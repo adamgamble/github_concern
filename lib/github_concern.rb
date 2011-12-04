@@ -7,6 +7,8 @@ module GithubConcern
 
   module ClassMethods
     def github_concern(options = {})
+      GithubConcern::Engine.add_class(self, options)
+      GithubConcern::Engine.add_github_concernable_relationship_to_class(self)
     end
   end
 end
