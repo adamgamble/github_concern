@@ -32,5 +32,4 @@ end
 
 :github_repo, and :github_branch represent attributes on the model
 
-Now when someone pushes to a repo that has the service hook, information about that will be stored in the database and associated to whatever models specified
-It will also be related to the user who pushed
+Now when someone pushes to a repo that has the service hook, information about that will be stored in the database and associated to whatever models specified. It will also call the github_concern_callback method on the object if it exists.
