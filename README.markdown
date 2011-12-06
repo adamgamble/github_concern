@@ -20,6 +20,7 @@ rake github_concern_engine:install:migrations
 ```
 
 You can configure whatever models you want to be associated with the git pushes
+
 ```Ruby
 class SomeModel < ActiveRecord::Base
   github_concern :repo => :github_repo, :branch => :github_branch
