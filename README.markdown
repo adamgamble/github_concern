@@ -25,7 +25,7 @@ You can configure whatever models you want to be associated with the git pushes
 class SomeModel < ActiveRecord::Base
   github_concern :repo => :github_repo, :branch => :github_branch
 
-  def github_concern_callback
+  def github_concern_callback git_push
   end
 end
 ```

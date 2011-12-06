@@ -30,7 +30,7 @@ class GitPush < ActiveRecord::Base
         github_concernable_git_push = self.github_concernable_git_pushes.new
         github_concernable_git_push.github_concernable = object
         github_concernable_git_push.save
-        object.github_concern_callback if object.respond_to?(:github_concern_callback)
+        object.github_concern_callback(self) if object.respond_to?(:github_concern_callback)
       end
     end
   end
