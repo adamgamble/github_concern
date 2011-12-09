@@ -3,6 +3,9 @@ require 'spec_helper'
 describe GitPush do
   describe "when I create a new git push" do
     before(:all) do
+      Project.class_eval {github_concern :repo => :github_repo }
+      Ticket.class_eval {github_concern :repo => :github_repo, :branch => :github_branch }
+
       @project                = Project.create(:github_repo => "some_repo")
       @non_concerned_project  = Project.create()
 
