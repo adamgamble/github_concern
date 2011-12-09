@@ -38,7 +38,10 @@ We'll communicate back and forth via the github interface.  All contributions
 are welcome.  Plase inform us of issues via the github issue tracker
 
 ## Authors
-Adam Gamble
+
+* Adam Gamble
+* Josh Adams
 
 ## License
+
 See the MIT-LICENSE file for details.
