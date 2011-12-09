@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler'
+require 'support/github_payload.rb'
 
 Bundler.require :default, :development
 
