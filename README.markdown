@@ -1,6 +1,27 @@
 # Github Concern
-***
-Add a service hook to your github repo that posts to http://your\_url/github\_integration
+
+Github Concern is a library to make integrating your application with github
+braindead simple.  It has the following useful features:
+
+* Provides a controller to respond to github post-push service hooks.
+* Provides models to store the information github sends you.
+* Provides a DSL for easily specifying which objects in your system should be
+  associated with commits.
+* Provides a DSL to specify actions in your system that should be taken as a
+  result of specific commits being seen.  For instance, in a time tracking
+  system you might add something that responded to commits that had "\[HOURS:
+  3.5\]" in them by creating a WorkUnit in the system, associated with that
+  commit, for 3.5 hours.
+
+## Installation
+
+First, add github\_concern to your Gemfile:
+
+    gem 'github_concern', :git => 'http://github.com/adamgamble/github_concern.git'
+    bundle install
+
+Now github\_concern is available to your application.  Next, add a service hook
+to your github repo that posts to http://your\_url/github\_integration
 
 Add this to config/initializers/github\_concern.rb:
 
@@ -11,7 +32,8 @@ Add this to config/initializers/github\_concern.rb:
 
 You can adjust the lambda to fit your needs for determining a user.
 
-Run this command to install the migrations:
+You need to create tables to store the commits and pushes that the github web
+hook is going to be sending you.  Run this command to install the migrations:
 
     rake github_concern_engine:install:migrations
 
