@@ -21,6 +21,12 @@ ActiveRecord::Schema.define do
     t.timestamps
   end
 
+  create_table(:git_commits, :force => true) do |t|
+    t.text :payload
+    t.integer :git_push_id
+    t.timestamps
+  end
+
   create_table(:github_concernable_git_pushes, :force => true) do |t|
     t.string  :github_concernable_type
     t.integer :github_concernable_id

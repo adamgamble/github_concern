@@ -31,6 +31,12 @@ describe GitPush do
       @non_concerned_user.git_pushes.should == []
     end
 
+    it "should automatically build commits" do
+      GitCommit.count.should == 1
+      @git_push.git_commits.should == [GitCommit.last]
+      @git_push.git_commits.last.payload.should == {"modified"=>["README"], "added"=>[], "timestamp"=>"2011-12-05T20:17:13-08:00", "removed"=>[], "author"=>{"name"=>"test_user", "username"=>"test_user", "email"=>"test@test.com"}, "url"=>"https://github.com/test_user/some_repo/commit/06e8f192e2e2c4c36f0759520e37cbcaea0cfb05", "id"=>"06e8f192e2e2c4c36f0759520e37cbcaea0cfb05", "distinct"=>true, "message"=>"readme"}
+    end
+
     it "should automatically concern the project" do
       @project.git_pushes.include?(@git_push).should == true
     end
