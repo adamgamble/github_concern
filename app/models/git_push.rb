@@ -30,15 +30,27 @@ class GitPush < ActiveRecord::Base
           git_variable = payload["repository"]["name"]
         when :branch
           git_variable = payload["ref"].gsub("refs/heads/","")
+        when :class_method
+          objects = bucket.send(github_concern_method,payload["repository"]["name"],payload["ref"].gsub("refs/heads/",""))
+          if objects.respond_to?(:each)
+            objects.each {|object| associate_to_object object }
+          else
+            associate_to_object objects
+          end
+          next
         end
         bucket = bucket.where(github_concern_method => git_variable)
       end
       bucket.all.each do |object|
-        github_concernable_git_push = self.github_concernable_git_pushes.new
-        github_concernable_git_push.github_concernable = object
-        github_concernable_git_push.save
-        object.github_concern_callback(self) if object.respond_to?(:github_concern_callback)
+        associate_to_object object
       end
     end
+  end
+
+  def associate_to_object object
+    github_concernable_git_push = self.github_concernable_git_pushes.new
+    github_concernable_git_push.github_concernable = object
+    github_concernable_git_push.save
+    object.github_concern_callback(self) if object.respond_to?(:github_concern_callback)
   end
 end
