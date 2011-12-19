@@ -1,6 +1,6 @@
 class GitPush < ActiveRecord::Base
   before_create :associate_user
-  after_create :associate_git_concernables, :build_commits
+  after_create :associate_git_concernables, :build_commits, :trigger_callback_lambdas
 
   serialize :payload
   belongs_to GithubConcern::Engine.user_class_symbol, :foreign_key => :user_id
@@ -52,5 +52,9 @@ class GitPush < ActiveRecord::Base
     github_concernable_git_push.github_concernable = object
     github_concernable_git_push.save
     object.github_concern_callback(self) if object.respond_to?(:github_concern_callback)
+  end
+
+  def trigger_callback_lambdas
+    GithubConcern::Engine.trigger_callback_lambdas self
   end
 end

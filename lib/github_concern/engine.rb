@@ -2,6 +2,8 @@ require 'rails/all'
 module GithubConcern
   class Engine < Rails::Engine
     @@github_concerns = {}
+    @@callback_lambdas = []
+
     def self.config
       yield(self)
     end
@@ -12,6 +14,16 @@ module GithubConcern
 
     def self.github_concerns
       @@github_concerns
+    end
+
+    def self.add_callback_lambda callback_lambda
+      @@callback_lambdas << callback_lambda
+    end
+
+    def self.trigger_callback_lambdas git_push
+      @@callback_lambdas.each do |callback_lambda|
+        callback_lambda.call(git_push)
+      end
     end
 
     def self.user_lambda= find_user_lambda
