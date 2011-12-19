@@ -80,9 +80,7 @@ are welcome.  Plase inform us of issues via the github issue tracker
 ## Authors
 
 * Adam Gamble
-* Josh Adams*
-
-\* Hasn't actually commited any code yet
+* Josh Adams
 
 ## License
 
