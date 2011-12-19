@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     github_concern (0.0.1)
-      rails (~> 3.1.3)
+      rails (~> 3.1.0)
 
 GEM
   remote: http://rubygems.org/
