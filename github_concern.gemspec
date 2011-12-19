@@ -7,8 +7,8 @@ require "github_concern/version"
 Gem::Specification.new do |s|
   s.name        = "github_concern"
   s.version     = GithubConcern::VERSION
-  s.authors     = ["Adam Gamble"]
-  s.email       = ["adamgamble@gmail.com"]
+  s.authors     = ["Adam Gamble", "Josh Adams"]
+  s.email       = ["adamgamble@gmail.com", "josh@isotope11.com"]
   s.homepage    = "http://www.github.com/adamgamble/github_concern"
   s.summary     = "Easily associate git commits with models"
   s.description = "Easily associate git commits with models"
