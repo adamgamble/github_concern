@@ -60,6 +60,17 @@ that will be stored in the database and associated to whatever models specified.
 It will also call the `github_concern_callback` method on the object if it
 exists.
 
+You can configure github_concern to call a class method to return objects to associate
+it doesn't have to be a scope, it could just be a class method that returns an array
+
+```ruby
+class Ticket < ActiveRecord::Base
+  github_concern :class_method => :for_repo_and_branch
+
+  scope :for_repo_and_branch, lambda { |repo,branch| joins("INNER JOIN projects p ON p.id=tickets.project_id").where("p.git_repo='#{repo}' AND tickets.git_branch='#{branch}'")}
+end
+```
+
 ## Contributing
 
 Fork our repo, make a feature branch, push to it.  Send us a pull request.
