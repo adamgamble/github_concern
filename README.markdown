@@ -24,7 +24,7 @@ gem 'github_concern', :git => 'http://github.com/adamgamble/github_concern.git'
     bundle install
 
 Now github\_concern is available to your application.  Next, add a service hook
-to your github repo that posts to http://your\_url/github\_integration
+to your github repo that posts to http://your\_url/github\_integration?token=some_unique_token
 
 Add this to config/initializers/github\_concern.rb:
 
@@ -32,6 +32,7 @@ Add this to config/initializers/github\_concern.rb:
 GithubConcern::Engine.config do |gc|
   gc.user_lambda = lambda {|email| User.find_by_email email}
   gc.user_class  = User
+  gc.token       = "some_unique_token"
 end
 ```
 
