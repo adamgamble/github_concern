@@ -3,14 +3,25 @@ require 'spec_helper'
 describe GithubController do
   describe "POST payload" do
     it "returns 500 when not sending a payload" do
-      post :payload
+      post :payload, :token => GithubConcern::Engine.token
       response.code.should == "500"
     end
 
-    describe "when sending a valid payload" do
+    describe "when sending a valid payload with an invalid token" do
       before(:each) do
         payload = valid_payload_hash.to_json
-        post :payload, :payload => payload
+        post :payload, :payload => payload, :token => "my_token"
+      end
+
+      it "should return a 404" do
+        response.code.should == "404"
+      end
+    end
+
+    describe "when sending a valid payload and a valid token" do
+      before(:each) do
+        payload = valid_payload_hash.to_json
+        post :payload, :payload => payload, :token => GithubConcern::Engine.token
       end
 
       it "returns 200 when sending a valid payload" do

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github_concern (0.0.4)
+    github_concern (0.1.0)
       rails (~> 3.1.0)
 
 GEM

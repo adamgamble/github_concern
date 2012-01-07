@@ -3,6 +3,7 @@ module GithubConcern
   class Engine < Rails::Engine
     @@github_concerns = {}
     @@callback_lambdas = []
+    @@token = ""
 
     def self.config
       yield(self)
@@ -24,6 +25,14 @@ module GithubConcern
       @@callback_lambdas.each do |callback_lambda|
         callback_lambda.call(git_push)
       end
+    end
+
+    def self.token= _token
+      @@token = _token
+    end
+
+    def self.token
+      @@token
     end
 
     def self.user_lambda= find_user_lambda

@@ -1,6 +1,7 @@
 GithubConcern::Engine.config do |gc|
   gc.user_lambda = lambda {|email| User.find_by_email email}
   gc.user_class  = User
+  gc.token       = "my_github_token"
 end
 
 Module.constants.select do |constant_name|
